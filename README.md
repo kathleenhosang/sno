@@ -219,7 +219,7 @@ spec:
 
 1. Log into the cluster
 
-2. mas install
+2. mas install (use EFS storage class to install)
 
 
 

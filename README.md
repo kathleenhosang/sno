@@ -153,21 +153,16 @@ Wait for the following Conditions to change to a "true" status:
 
 On the AWS console, open https://console.aws.amazon.com/efs. Click Create file system:
 
-Enter a name for the file system.
-
-For Virtual Private Cloud (VPC), select your OpenShift Container Platform’s' virtual private cloud (VPC).
-
-Accept default settings for all other selections.
-
-Wait for the volume and mount targets to finish being fully created:
+* Enter a name for the file system.
+* For Virtual Private Cloud (VPC), select your OpenShift Container Platform’s' virtual private cloud (VPC).
+* Accept default settings for all other selections.
+* Wait for the volume and mount targets to finish being fully created:
 
 Go to https://console.aws.amazon.com/efs#/file-systems.
 
-Click your volume, and on the Network tab wait for all mount targets to become available (~1-2 minutes).
-
-On the Network tab, copy the Security Group ID (you will need this in the next step).
-
-Go to https://console.aws.amazon.com/ec2/v2/home#SecurityGroups, and find the Security Group used by the EFS volume.
+* Click your volume, and on the Network tab wait for all mount targets to become available (~1-2 minutes).
+* On the Network tab, copy the Security Group ID (you will need this in the next step).
+* Go to https://console.aws.amazon.com/ec2/v2/home#SecurityGroups, and find the Security Group used by the EFS volume.
 
 On the Inbound rules tab, click Edit inbound rules, and then add a new rule with the following settings to allow OpenShift Container Platform nodes to access EFS volumes:
 

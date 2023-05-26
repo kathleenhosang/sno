@@ -117,7 +117,112 @@ Connected to OCP cluster: https://console-openshift-console.apps.sno.dns.com
 
 ## Set Up Amazon EFS
 
+Documentation: https://docs.openshift.com/container-platform/4.10/storage/container_storage_interface/persistent-storage-csi-aws-efs.html
 
+1. Install the "AWS EFS CSI Driver Operator" from the OpenShift Operator Hub.
 
+<img width="1681" alt="Screenshot 2023-05-26 at 1 33 34 PM" src="https://github.com/kathleenhosang/sno/assets/40863347/2f56cfc4-d008-4db4-b79d-8785ecbe8c58">
+
+Use the default settings:
+
+<img width="1521" alt="Screenshot 2023-05-26 at 1 37 58 PM" src="https://github.com/kathleenhosang/sno/assets/40863347/c9a4e102-b257-484f-99b3-939b60e9fe4b">
+
+2. Install the AWS EFS CSI Driver:
+
+Click administration → CustomResourceDefinitions → ClusterCSIDriver.
+
+On the Instances tab, click Create ClusterCSIDriver.
+
+Use the following YAML file:
+
+```sh
+apiVersion: operator.openshift.io/v1
+kind: ClusterCSIDriver
+metadata:
+    name: efs.csi.aws.com
+spec:
+  managementState: Managed
+```
+
+Wait for the following Conditions to change to a "true" status:
+* AWSEFSDriverCredentialsRequestControllerAvailable
+* AWSEFSDriverNodeServiceControllerAvailable
+* AWSEFSDriverControllerServiceControllerAvailable
+
+3. Configure File Share on AWS for the Storage Class
+
+On the AWS console, open https://console.aws.amazon.com/efs. Click Create file system:
+
+Enter a name for the file system.
+
+For Virtual Private Cloud (VPC), select your OpenShift Container Platform’s' virtual private cloud (VPC).
+
+Accept default settings for all other selections.
+
+Wait for the volume and mount targets to finish being fully created:
+
+Go to https://console.aws.amazon.com/efs#/file-systems.
+
+Click your volume, and on the Network tab wait for all mount targets to become available (~1-2 minutes).
+
+On the Network tab, copy the Security Group ID (you will need this in the next step).
+
+Go to https://console.aws.amazon.com/ec2/v2/home#SecurityGroups, and find the Security Group used by the EFS volume.
+
+On the Inbound rules tab, click Edit inbound rules, and then add a new rule with the following settings to allow OpenShift Container Platform nodes to access EFS volumes:
+
+Type: NFS
+Protocol: TCP
+Port range: 2049
+Source: Custom/IP address range of your nodes (for example: “10.0.0.0/16”)
+
+This step allows OpenShift Container Platform to use NFS ports from the cluster.
+
+4. Create the storage class
+
+Create a apply the StorageClass object yaml:
+Replace the fileSystemID with the ID of the newly created AWS file system.
+
+```sh
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: efs-sc
+provisioner: efs.csi.aws.com
+parameters:
+  provisioningMode: efs-ap 
+  fileSystemId: fs-a5324911 
+  directoryPerms: "700" 
+  gidRangeStart: "1000" 
+  gidRangeEnd: "2000" 
+  basePath: "/dynamic_provisioning" 
+```
+
+5. Enable dynamic provisioning 
+
+Create a PVC (or StatefulSet or Template) as usual, referring to the StorageClass created above:
+
+```sh
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: test
+spec:
+  storageClassName: efs-sc
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+```
 ## Install MAS and MAS Manage
+
+1. Log into the cluster
+
+2. mas install
+
+
+
+
+
 

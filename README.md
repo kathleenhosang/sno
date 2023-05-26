@@ -16,7 +16,7 @@ IBM entitlement Key | Log in to the IBM Container Library with a user ID that ha
 Openshift pull secret file (pull-secret) | It can be downloaded from [here] (https://access.redhat.com/management). You need a valid redhat account for downloading.
 MAS license file (license.dat) | Access IBM License Key Center to the Get Keys menu select IBM AppPoint Suites. Select IBM MAXIMO APPLICATION SUITE AppPOINT LIC. |
 Docker/Podman |
-Valid AWS Access Key ID |
+Valid AWS Access Key ID | This is the access key associated with the user ID you are using to install. |
 AWS Secret Access key | If you don't have it, ask your aws account admin to create one in IAM service |
 AWS Domain or subdomain | If you don't have one, ask your aws account admin to register one through AWS Route53 |
 
@@ -86,20 +86,20 @@ Powered by https://github.com/ibm-mas/ansible-devops/
 AWS Access Key ID
 Provide your AWS API Key ID (if you have not set the AWS_ACCESS_KEY_ID
 environment variable) which will be used to provision an AWS instance.
-AWS API Key ID > AKIAWKXUCZ55STYXXX
+AWS API Key ID > XXXXXXXXXXXXXXXXX
 
 AWS Secret Access Key
 Provide your AWS Secret Access Key (if you have not set the AWS_SECRET_ACCESS_KEY
 environment variable) which will be used to provision an AWS instance.
 
-AWS Secret Access Key > HiIoMnhB13tKthkiBlXvpJM9g/znKKlCgJoyxxxx
-Re-use saved AWS Secret Access Key Starting 'HiIoMnhB13tKthkiBlXvpJM9g/znKKlCgJoyxxxx'? [Y/n] 
+AWS Secret Access Key > XXXXXXXXXXXXXXXXX
+Re-use saved AWS Secret Access Key Starting 'XXXXXXXXXXXXXXX'? [Y/n] 
 
 AWS Cluster Configuration
 Cluster Name > sno
 AWS Region > us-east-2
-AWS Base Domain > buyermas4aws.com
-Do you want single node openshift  [Y/n] 
+AWS Base Domain > dns.com
+Do you want single node openshift  [Y/n] y
 
 OCP Version:
   1. 4.10 EUS 
@@ -116,6 +116,7 @@ Connected to OCP cluster: https://console-openshift-console.apps.sno.dns.com
 ```
 
 ## Set Up Amazon EFS
+
 
 
 ## Install MAS and MAS Manage

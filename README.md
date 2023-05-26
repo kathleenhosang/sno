@@ -166,10 +166,10 @@ Go to https://console.aws.amazon.com/efs#/file-systems.
 
 On the Inbound rules tab, click Edit inbound rules, and then add a new rule with the following settings to allow OpenShift Container Platform nodes to access EFS volumes:
 
-Type: NFS
-Protocol: TCP
-Port range: 2049
-Source: Custom/IP address range of your nodes (for example: “10.0.0.0/16”)
+* Type: NFS
+* Protocol: TCP
+* Port range: 2049
+* Source: Custom/IP address range of your nodes (for example: “10.0.0.0/16”)
 
 This step allows OpenShift Container Platform to use NFS ports from the cluster.
 

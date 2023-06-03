@@ -40,6 +40,7 @@ docker run -dit --name sno quay.io/ibmmas/cli:latest bash
 
 ```sh
 docker exec -it sno bash
+cd ~
 mkdir masconfig
 exit
 ```

@@ -48,8 +48,8 @@ exit
 3. Copy pull-secret and mas license file into the docker container
 
 ```sh
-docker cp pull-secret sno:/mascli/masconfig/pull-secret
-docker cp license.dat sno:/mascli/masconfig/license.dat
+docker cp pull-secret sno:/opt/app-root/src/masconfig/pull-secret
+docker cp license.dat sno:/opt/app-root/src/masconfig/license.dat
 ```
 
 4. Log into docker container

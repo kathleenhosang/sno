@@ -13,7 +13,7 @@ OpenShift | 4.10+ |
 vCPU | 16Cores |
 RAM | 64Gb |
 IBM entitlement Key | Log in to the IBM Container Library with a user ID that has software download rights for your company’s Passport Advantage entitlement to get the entitlement key. |
-Openshift pull secret file (pull-secret) | It can be downloaded from [here] (https://access.redhat.com/management). You need a valid redhat account for downloading.
+Openshift pull secret file (pull-secret) | It can be downloaded from [here](https://access.redhat.com/management). You need a valid redhat account for downloading.
 MAS license file (license.dat) | Access IBM License Key Center to the Get Keys menu select IBM AppPoint Suites. Select IBM MAXIMO APPLICATION SUITE AppPOINT LIC. |
 Docker/Podman |
 Valid AWS Access Key ID | This is the access key associated with the user ID you are using to install. |
@@ -25,7 +25,7 @@ AWS Domain or subdomain | If you don't have one, ask your aws account admin to r
 
 Documentation: https://ibm-mas-manage.github.io/sno/
 
-_Perform the folloinwg steps from a bastion node (or local machine)._
+_Perform the following steps from a bastion node (or local machine)._
 
 1. Set up IBM MAS DevOps ansible collection docker container
 
